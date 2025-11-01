@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,7 +31,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
+    public function addresses(): HasMany {
+        return $this->hasMany('addresses', 'user_id');
+    }
     /**
      * The attributes that should be cast to native types.
      *
